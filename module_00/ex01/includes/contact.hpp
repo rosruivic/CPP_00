@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:53:51 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/03/10 22:55:56 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:20:17 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ class	Contact {
 
 		// method setter to fill the content into the properties of the class instance
 		void setContact(std::string firstNm,
-				std::string lastNm,
-				std::string nickNm,
-				std::string phoneNum,
-				std::string darkScrt);
+						std::string lastNm,
+						std::string nickNm,
+						std::string phoneNum,
+						std::string darkScrt);
 
 		// method getter to access to the content of the properties of the class instance
 		void getContact();
