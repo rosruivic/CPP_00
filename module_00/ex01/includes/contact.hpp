@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:53:51 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/03/14 14:20:17 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:55:01 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 class	Contact {
 	
 	private:
-		std::string firstName;
-		std::string lastName;
-		std::string nickName;
-		std::string phoneNumber;
-		std::string darkestSecret;
+		std::string _firstName;
+		std::string _lastName;
+		std::string _nickName;
+		std::string _phoneNumber;
+		std::string _darkestSecret;
 		
 	public:
 		Contact(std::string firstNm,
@@ -48,10 +48,20 @@ class	Contact {
 						std::string darkScrt);
 
 		// method getter to access to the content of the properties of the class instance
-		void getContact();
+		std::string getFirstName();
+		std::string getLastName();
+		std::string getNickName();
+		std::string getPhoneNum();
+		std::string getDarkSecret();
+		
+		void setFirstName(std::string firstNm);
+		void setLastName(std::string lastNm);
+		void setNickName(std::string nickNm);
+		void setPhoneNum(std::string phoneNum);
+		void setDarkestSecret(std::string darkScrt);
 
 		// method to show by screen the content of the properties of the class instance
-		void printContact();
+
 };
 
 #endif
