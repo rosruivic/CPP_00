@@ -6,12 +6,12 @@
 /*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:22:24 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/18 19:57:35 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:28:08 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
-#include "contact.hpp"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 /*
 	Resulta que usar la llamada al sistema se considera poco seguro, pero en 
@@ -48,6 +48,7 @@ void	ft_welcome(void)
 	std::cout << "   SEARCH -> to search and display an existent contact on your Phone Book." << std::endl;
 	std::cout << "   EXIT   -> to finish your session and exit the program." << std::endl;
 	std::cout << std::endl << std::endl;
+	std::cout << "Your selection: ";
 }
 
 std::string ft_capture_string(void){
@@ -78,7 +79,6 @@ void	ft_obtain_data(std::string s1,
 	std::cout << "Dark Secret:     ";
 	s5 = ft_capture_string();
 	
-			
 }
 
 /*
@@ -90,21 +90,21 @@ int	main(void)
 	std::string	option;		// en lugar de tipo 'char *', los strings se declaran así
 	std::string s1, s2, s3, s4, s5;
 	PhoneBook	ph_book;	// declarar una variable de tipo clase llama a su constructor
-	
+
 	ft_welcome();
 	while (std::getline(std::cin, option))
 	{
-//		std::getline(std::cin, option);
-		std::cout << std::endl;
 		if (option == "EXIT" || option == "exit")
 			break;
 		else if (option == "ADD" || option == "add"){
 			ft_obtain_data(s1, s2, s3, s4, s5);
-			ph_book.addPhoneBookContact(s1, s2, s3, s4, s5);
+			ph_book.setPhoneBookContact(s1, s2, s3, s4, s5);
 		}
 		else if (option == "SEARCH" || option == "search")
 			// llamar al método SEARCH
 			;
+
+		ft_welcome();
 	}
 	return (0);	
 }

@@ -1,15 +1,15 @@
 
 NAME	=	phonebook
 
-SRC		=	phonebook.cpp \
-			contact.cpp \
+SRC		=	PhoneBook.cpp \
+			Contact.cpp \
 			main.cpp
 
 OBJ		= $(SRC:.cpp=.o)
 
 OFILES	= $(addprefix obj/, $(OBJ))
 
-CC		= g++
+CC		= c++
 
 FLAGS	= -Wall -Werror -Wextra
 

@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:17:01 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/10 17:38:42 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:09:10 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ class	PhoneBook {
 		PhoneBook(void);
 		~PhoneBook(void);
 		
-		void addPhoneBookContact(std::string firstNm,
+		void setPhoneBookContact(std::string firstNm,
 								std::string lastNm,
 								std::string nickNm,
 								std::string phoneNum,
-								str::string darkScrt);
+								std::string darkScrt);
 								
 		void getPhoneBookContact(int i, const Contact &contact);
 		
