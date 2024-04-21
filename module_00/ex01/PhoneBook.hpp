@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:17:01 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/20 16:09:10 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 00:45:33 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 # include <iostream>
+# include <cstdlib> // cstdlib es parte de la biblioteca estándar de C++ y está disponible en C++98. Esta biblioteca proporciona las funciones de la biblioteca estándar de C para la conversión de números, generación de números aleatorios, gestión de la memoria, búsqueda y ordenación. La función std::atoi que estás utilizando es parte de esta biblioteca.
 # include <iomanip>
 /* <iomanip> IO Manipulators:
 	setiosflags		Set format flags (function)
@@ -54,7 +55,9 @@ class	PhoneBook {
 								std::string phoneNum,
 								std::string darkScrt);
 								
-		void getPhoneBookContact(int i, const Contact &contact);
+		void getPhoneBookContact(void);
+		
+		void getPhoneBookContact(std::string id);
 		
 };
 

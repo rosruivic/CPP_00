@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:22:24 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/20 16:28:08 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 00:47:39 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 	escribir 100 líneas en blanco, estaríamos viendo el siguiente mensaje
 	abajo en la ventana (creo, probarlo no obstante)
 */
-void	ft_clearScreen () {
+void	ftClearScreen () {
 	for (int i = 0; i < 100; ++i) {
 		std::cout << std::endl;
 	}
@@ -36,14 +36,14 @@ void	ft_clearScreen () {
 		std::cout << std::setw(10) << std::setfill('*') << "Hello" << std::endl;
 	la salida será '*****Hello', 10 caracteres en total y 5 de relleno al principio
 */
-void	ft_welcome(void)
+void	ftWelcome(void)
 {
-	ft_clearScreen();
-    std::cout << std::setw(25) << std::setfill('-') << std::endl;
-	std::cout << std::endl << "  This is your Awesome PhoneBook !!!";
-    std::cout << std::setw(25) << std::setfill('-') << std::endl;
-	std::cout << std::endl << " Please, write your option in UPPERs :" << std::endl;
-    std::cout << std::setw(25) << std::setfill('-') << std::endl;
+	ftClearScreen();
+    std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl << std::endl;
+	std::cout << std::setw(40) << std::setfill('-') << "  This is your Awesome PhoneBook !!!" << std::endl << std::endl;
+    std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl << std::endl;
+	std::cout << std::endl << " Please, write your option :" << std::endl;
+    std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl;
 	std::cout << "   ADD    -> to add a new contact to your Phone Book." << std::endl;
 	std::cout << "   SEARCH -> to search and display an existent contact on your Phone Book." << std::endl;
 	std::cout << "   EXIT   -> to finish your session and exit the program." << std::endl;
@@ -51,33 +51,58 @@ void	ft_welcome(void)
 	std::cout << "Your selection: ";
 }
 
-std::string ft_capture_string(void){
+/*
+* En este código, std::numeric_limits<std::streamsize>::max() devuelve el máximo 
+* número de caracteres que puede contener un objeto de tipo std::streamsize, 
+* y '\n' es el carácter de nueva línea. 
+* Entonces, std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n') 
+* ignora el máximo número de caracteres hasta que se encuentra un carácter 
+* de nueva línea, lo que efectivamente ignora el carácter de nueva línea 
+* introducido cuando se presiona Enter.
+*
+* ********* ESTANDAR C++ 98: **********
+* En este código, std::cin >> s; lee la entrada del usuario en la cadena s. 
+* Si s está vacío (es decir, el usuario simplemente presionó Enter sin 
+* introducir ningún carácter), entonces std::cin.ignore(1000, '\n'); ignora 
+* hasta 1000 caracteres o hasta que se encuentra un carácter de nueva línea, 
+* lo que efectivamente evita que se haga un salto de línea.
+*
+* ****  NO WAY *****
+*/
+std::string ftCaptureString(void){
 	std::string s;
+	char		c;
 	
-	while (std::getline(std::cin, s))
+//	while (std::getline(std::cin, s))
+	while (std::cin.get(c))
 	{
-		if (!s.empty())
+		if (c == '\n' && !s.empty())
 			break;
+		else if (c != '\n')
+			s += c;
+	//	else
+	//		std::cin.ignore(1000, '\n');
+	//		std::cout << '\b' << ' ' << '\b';
 	}
 	return (s);
 }
 
-void	ft_obtain_data(std::string s1,
+void	ftObtainData(std::string s1,
 							std::string s2, 
 							std::string s3,
 							std::string s4, 
 							std::string s5) {
 								
 	std::cout << "First Name:      ";
-	s1 = ft_capture_string();
+	s1 = ftCaptureString();
 	std::cout << "Last Name:       ";
-	s2 = ft_capture_string();
+	s2 = ftCaptureString();
 	std::cout << "Nick Name:       ";
-	s3 = ft_capture_string();
+	s3 = ftCaptureString();
 	std::cout << "Phone Number:    ";
-	s4 = ft_capture_string();
+	s4 = ftCaptureString();
 	std::cout << "Dark Secret:     ";
-	s5 = ft_capture_string();
+	s5 = ftCaptureString();
 	
 }
 
@@ -91,20 +116,21 @@ int	main(void)
 	std::string s1, s2, s3, s4, s5;
 	PhoneBook	ph_book;	// declarar una variable de tipo clase llama a su constructor
 
-	ft_welcome();
+	ftWelcome();
 	while (std::getline(std::cin, option))
 	{
 		if (option == "EXIT" || option == "exit")
 			break;
 		else if (option == "ADD" || option == "add"){
-			ft_obtain_data(s1, s2, s3, s4, s5);
+			ftObtainData(s1, s2, s3, s4, s5);
 			ph_book.setPhoneBookContact(s1, s2, s3, s4, s5);
 		}
-		else if (option == "SEARCH" || option == "search")
-			// llamar al método SEARCH
-			;
-
-		ft_welcome();
+		else if (option == "SEARCH" || option == "search") {
+			ph_book.getPhoneBookContact();
+			std::cout << "   * Which contact want you see? ";
+			ph_book.getPhoneBookContact(ftCaptureString());
+		}
+		ftWelcome();
 	}
 	return (0);	
 }

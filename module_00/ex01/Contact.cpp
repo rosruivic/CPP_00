@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:24:44 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/20 16:10:09 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 00:15:23 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,23 @@ void Contact::setDarkestSecret(std::string darkScrt) {
 	this->_darkestSecret = darkScrt;
 }
 
-/*  GETTER: to access to the values of an instance of the class */
-// void Contact::getContact(int id) {
-	
-// }
+/*  GETTERS: to access to the values of an instance of the class */
+std::string Contact::getFirstName() {
+	return (this->_firstName);
+}
+
+std::string Contact::getLastName() {
+	return (this->_lastName);
+}
+
+std::string Contact::getNickName() {
+	return (this->_nickName);	
+}
+
+std::string Contact::getPhoneNum() {
+	return (this->_phoneNumber);	
+}
+
+std::string Contact::getDarkestSecret() {
+	return (this->_darkestSecret);
+}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:24:18 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/20 16:09:14 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 01:22:53 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,41 @@ void PhoneBook::setPhoneBookContact(std::string firstNm,
 	this->_contacts[0].setPhoneNum(phoneNum);
 	this->_contacts[0].setDarkestSecret(darkScrt); 
 
+}
+
+void PhoneBook::getPhoneBookContact(void){
+	// imprime todos los registros con 4 campos separados por pipes
+	for (int contactId = 0; contactId < 8; ++contactId)
+		std::cout	<< contactId + 1
+				<< " | "
+				<< this->_contacts[contactId].getFirstName()
+				<< " | "
+				<< this->_contacts[contactId].getLastName()
+				<< " | "
+				<< this->_contacts[contactId].getNickName()
+				<< std::endl;
+}
+
+/*
+* std::atoi(id.c_str()) convierte la cadena id a un número entero. 
+* id.c_str() se utiliza para obtener un puntero a una matriz de 
+* caracteres que representa la cadena, ya que std::atoi espera un 
+* argumento de tipo const char*
+*/
+void PhoneBook::getPhoneBookContact(std::string id) {
+	int	contactId;
+
+	contactId = std::atoi(id.c_str());
+	if (contactId <= 8 && contactId >= 1) {
+		std::cout	<< contactId
+					<< " | "
+					<< this->_contacts[contactId - 1].getFirstName()
+					<< " | "
+					<< this->_contacts[contactId - 1].getLastName()
+					<< " | "
+					<< this->_contacts[contactId - 1].getNickName()
+					<< std::endl;
+	}
+	else
+		std::cout << "Invalid option";
 }
