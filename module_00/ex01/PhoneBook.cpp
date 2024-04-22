@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:24:18 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/22 01:22:53 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:52:22 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,37 @@ void PhoneBook::setPhoneBookContact(std::string firstNm,
 
 }
 
-void PhoneBook::getPhoneBookContact(void){
+int PhoneBook::getPhoneBookContact(void){
 	// imprime todos los registros con 4 campos separados por pipes
-	for (int contactId = 0; contactId < 8; ++contactId)
-		std::cout	<< contactId + 1
-				<< " | "
-				<< this->_contacts[contactId].getFirstName()
-				<< " | "
-				<< this->_contacts[contactId].getLastName()
-				<< " | "
-				<< this->_contacts[contactId].getNickName()
-				<< std::endl;
+	if (this->_contacts[0].getFirstName().empty()) {
+		std::cout << " **********  There's any contact yet !!!";
+		std::cout << std::endl << " ------- Please, push ENTER to continue... " ;
+		std::cin.get();
+		return (1);
+	}
+	else {
+		for (int contactId = 0; contactId < 8; ++contactId) {
+			if (!this->_contacts[contactId].getFirstName().empty()) {
+				std::cout << contactId + 1 << " | ";
+				PhoneBook::printTruncated(this->_contacts[contactId].getFirstName());
+				std::cout << " | ";
+				PhoneBook::printTruncated(this->_contacts[contactId].getLastName());
+				std::cout << " | ";
+				PhoneBook::printTruncated(this->_contacts[contactId].getNickName());
+				std::cout << std::endl;
+			}
+		}
+		return (0);
+	}
+}
+
+void PhoneBook::printTruncated(std::string str) {
+	unsigned long	width = 10;
+	
+	if (str.length() > width) {
+		str = str.substr(0, width - 1) + ".";
+	}
+	std::cout << std::setfill(' ') << std::setw(width) << std::right << str;
 }
 
 /*
@@ -68,16 +88,19 @@ void PhoneBook::getPhoneBookContact(std::string id) {
 	int	contactId;
 
 	contactId = std::atoi(id.c_str());
-	if (contactId <= 8 && contactId >= 1) {
-		std::cout	<< contactId
-					<< " | "
-					<< this->_contacts[contactId - 1].getFirstName()
-					<< " | "
-					<< this->_contacts[contactId - 1].getLastName()
-					<< " | "
-					<< this->_contacts[contactId - 1].getNickName()
-					<< std::endl;
+	if (contactId < 1 || contactId > 8)
+		std::cout << " ************   Number out of range or invalid entry !!!";
+	else if (!this->_contacts[contactId - 1].getFirstName().empty()) {
+		std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl;
+		std::cout << "First Name:      " << this->_contacts[contactId - 1].getFirstName() << std::endl;
+		std::cout << "Last Name:       " << this->_contacts[contactId - 1].getLastName() << std::endl;
+		std::cout << "Nick:            " << this->_contacts[contactId - 1].getNickName() << std::endl;
+		std::cout << "Phone Number:    " << this->_contacts[contactId - 1].getPhoneNum() << std::endl;
+		std::cout << "Darkest Secret:  " << this->_contacts[contactId - 1].getDarkestSecret() << std::endl;
+		std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl;
 	}
 	else
-		std::cout << "Invalid option";
+		std::cout << " ************   The contact doesn't exist !!!";
+	std::cout << std::endl << " ----- Please, push ENTER to continue... " ;
+	std::cin.get();
 }

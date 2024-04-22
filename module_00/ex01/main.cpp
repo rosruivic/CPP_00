@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:22:24 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/22 00:47:39 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:56:27 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 	abajo en la ventana (creo, probarlo no obstante)
 */
 void	ftClearScreen () {
-	for (int i = 0; i < 100; ++i) {
+/* 	for (int i = 0; i < 100; ++i) {
 		std::cout << std::endl;
-	}
-//	system("clear");
+	} */
+	system("clear");
 }
 
 /*
@@ -87,22 +87,22 @@ std::string ftCaptureString(void){
 	return (s);
 }
 
-void	ftObtainData(std::string s1,
-							std::string s2, 
-							std::string s3,
-							std::string s4, 
-							std::string s5) {
+void	ftObtainNewContact(std::string *s1,
+							std::string *s2, 
+							std::string *s3,
+							std::string *s4, 
+							std::string *s5) {
 								
 	std::cout << "First Name:      ";
-	s1 = ftCaptureString();
+	*s1 = ftCaptureString();
 	std::cout << "Last Name:       ";
-	s2 = ftCaptureString();
+	*s2 = ftCaptureString();
 	std::cout << "Nick Name:       ";
-	s3 = ftCaptureString();
+	*s3 = ftCaptureString();
 	std::cout << "Phone Number:    ";
-	s4 = ftCaptureString();
+	*s4 = ftCaptureString();
 	std::cout << "Dark Secret:     ";
-	s5 = ftCaptureString();
+	*s5 = ftCaptureString();
 	
 }
 
@@ -122,13 +122,14 @@ int	main(void)
 		if (option == "EXIT" || option == "exit")
 			break;
 		else if (option == "ADD" || option == "add"){
-			ftObtainData(s1, s2, s3, s4, s5);
+			ftObtainNewContact(&s1, &s2, &s3, &s4, &s5);
 			ph_book.setPhoneBookContact(s1, s2, s3, s4, s5);
 		}
 		else if (option == "SEARCH" || option == "search") {
-			ph_book.getPhoneBookContact();
-			std::cout << "   * Which contact want you see? ";
-			ph_book.getPhoneBookContact(ftCaptureString());
+			if (!ph_book.getPhoneBookContact()) {
+				std::cout << "   * Which contact want you see? [1..8] :  ";
+				ph_book.getPhoneBookContact(ftCaptureString());
+			}
 		}
 		ftWelcome();
 	}
