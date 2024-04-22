@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:17:01 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/22 15:15:53 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:32:58 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ class	PhoneBook {
 								std::string phoneNum,
 								std::string darkScrt);
 								
-		int getPhoneBookContact(void);
+		bool getPhoneBookContact(void); // returns 1 if no contacts, 0 otherwise
 		
 		void getPhoneBookContact(std::string id);
 

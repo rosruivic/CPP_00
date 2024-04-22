@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:22:24 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/22 14:56:27 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:52:09 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ftWelcome(void)
 * hasta 1000 caracteres o hasta que se encuentra un carácter de nueva línea, 
 * lo que efectivamente evita que se haga un salto de línea.
 *
-* ****  NO WAY *****
+* ****  NO WAY!!! *****
 */
 std::string ftCaptureString(void){
 	std::string s;
@@ -114,21 +114,21 @@ int	main(void)
 {
 	std::string	option;		// en lugar de tipo 'char *', los strings se declaran así
 	std::string s1, s2, s3, s4, s5;
-	PhoneBook	ph_book;	// declarar una variable de tipo clase llama a su constructor
+	PhoneBook	phBook;	// declarar una variable de tipo clase llama a su constructor
 
 	ftWelcome();
 	while (std::getline(std::cin, option))
 	{
 		if (option == "EXIT" || option == "exit")
 			break;
-		else if (option == "ADD" || option == "add"){
+		else if (option == "ADD" || option == "add") {
 			ftObtainNewContact(&s1, &s2, &s3, &s4, &s5);
-			ph_book.setPhoneBookContact(s1, s2, s3, s4, s5);
+			phBook.setPhoneBookContact(s1, s2, s3, s4, s5);
 		}
 		else if (option == "SEARCH" || option == "search") {
-			if (!ph_book.getPhoneBookContact()) {
-				std::cout << "   * Which contact want you see? [1..8] :  ";
-				ph_book.getPhoneBookContact(ftCaptureString());
+			if (!phBook.getPhoneBookContact()) {
+				std::cout << "   * Which contact do you want to see? [1..8] :  ";
+				phBook.getPhoneBookContact(ftCaptureString());
 			}
 		}
 		ftWelcome();

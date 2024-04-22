@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:24:18 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/22 15:52:22 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:33:34 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@
 	datos de Contact a valores razonables, este código inicializa cada
 	elemento de 'contacts' a esos valores
 */
-PhoneBook::PhoneBook(void) {
-/* 	for (int i = 0; i < 8; i++) {
-		this->_contacts[i] = Contact(NULL, NULL, NULL, NULL, NULL);
-	} */
-}
+PhoneBook::PhoneBook(void) {}
 
 PhoneBook::~PhoneBook(void) {}
 
@@ -45,7 +41,7 @@ void PhoneBook::setPhoneBookContact(std::string firstNm,
 
 }
 
-int PhoneBook::getPhoneBookContact(void){
+bool PhoneBook::getPhoneBookContact(void){
 	// imprime todos los registros con 4 campos separados por pipes
 	if (this->_contacts[0].getFirstName().empty()) {
 		std::cout << " **********  There's any contact yet !!!";
