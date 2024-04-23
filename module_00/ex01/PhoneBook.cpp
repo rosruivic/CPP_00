@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:24:18 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/22 16:33:34 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:32:29 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,30 @@ void PhoneBook::setPhoneBookContact(std::string firstNm,
 
 }
 
+unsigned long PhoneBook::asciiExtended(std::string str) {
+	unsigned long n = 0;
+	unsigned char c;
+	
+	for (unsigned long i = 0; i < str.length(); i++) {
+		c = static_cast<unsigned char>(str[i]); // convierte cada carácter a su valor ASCII
+		if (c > 127)
+			n++; 
+	}
+	return (n);
+}
+
+void PhoneBook::printTruncated(std::string str) {
+	unsigned long	width = 10;
+	unsigned long	asciiWidth;
+	
+	asciiWidth = width;
+	asciiWidth = asciiWidth + asciiExtended(str);
+	if (str.length() > asciiWidth) {
+		str = str.substr(0, width - 1) + ".";
+	}
+	std::cout << std::setfill(' ') << std::setw(width) << std::right << str;
+}
+
 bool PhoneBook::getPhoneBookContact(void){
 	// imprime todos los registros con 4 campos separados por pipes
 	if (this->_contacts[0].getFirstName().empty()) {
@@ -65,15 +89,6 @@ bool PhoneBook::getPhoneBookContact(void){
 	}
 }
 
-void PhoneBook::printTruncated(std::string str) {
-	unsigned long	width = 10;
-	
-	if (str.length() > width) {
-		str = str.substr(0, width - 1) + ".";
-	}
-	std::cout << std::setfill(' ') << std::setw(width) << std::right << str;
-}
-
 /*
 * std::atoi(id.c_str()) convierte la cadena id a un número entero. 
 * id.c_str() se utiliza para obtener un puntero a una matriz de 
@@ -84,7 +99,7 @@ void PhoneBook::getPhoneBookContact(std::string id) {
 	int	contactId;
 
 	contactId = std::atoi(id.c_str());
-	if (contactId < 1 || contactId > 8)
+	if ((contactId < 1 || contactId > 8) || id.length() != 1)
 		std::cout << " ************   Number out of range or invalid entry !!!";
 	else if (!this->_contacts[contactId - 1].getFirstName().empty()) {
 		std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl;

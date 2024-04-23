@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:22:24 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/22 17:52:09 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:27:46 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,18 @@ void	ftWelcome(void)
 * ****  NO WAY!!! *****
 */
 std::string ftCaptureString(void){
-	std::string s;
-	char		c;
+	std::string 	s;
+//	unsigned char	c;
 	
-//	while (std::getline(std::cin, s))
-	while (std::cin.get(c))
+	while (std::getline(std::cin, s))
 	{
-		if (c == '\n' && !s.empty())
-			break;
-		else if (c != '\n')
-			s += c;
-	//	else
-	//		std::cin.ignore(1000, '\n');
-	//		std::cout << '\b' << ' ' << '\b';
+		if (!s.empty()) {
+	//		for (unsigned long i = 0; i < s.length(); i++) {
+	//			c = static_cast<unsigned char>(s[i]);
+	//			if (c <= 127)
+					break;
+			}
+//		}
 	}
 	return (s);
 }
