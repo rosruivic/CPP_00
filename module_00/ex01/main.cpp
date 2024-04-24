@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:22:24 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/23 19:27:46 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:24:56 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include "Contact.hpp"
 
 /*
-	Resulta que usar la llamada al sistema se considera poco seguro, pero en 
-	este caso, que tenemos la certeza de estar trabajando en un entorno privado
-	y no va a haber problemas, podemos usarlo.
-	El problema de usar la versión segura con el bucle 'for' es que, tras
-	escribir 100 líneas en blanco, estaríamos viendo el siguiente mensaje
-	abajo en la ventana (creo, probarlo no obstante)
+	A system call is consider low-safe. 
+	In this case, we have the certain of working over a private environment
+	so this, there won't be problems, we can use it.
+	Although, we could use a safe-versión with the following for bucle.
+	In this case, we can't fix the down-view of the info into the window.
+	
+	 	for (int i = 0; i < 100; ++i) {
+			std::cout << std::endl;
+		}
 */
 void	ftClearScreen () {
-/* 	for (int i = 0; i < 100; ++i) {
-		std::cout << std::endl;
-	} */
 	system("clear");
 }
 
@@ -52,46 +52,39 @@ void	ftWelcome(void)
 }
 
 /*
-* En este código, std::numeric_limits<std::streamsize>::max() devuelve el máximo 
-* número de caracteres que puede contener un objeto de tipo std::streamsize, 
-* y '\n' es el carácter de nueva línea. 
-* Entonces, std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n') 
-* ignora el máximo número de caracteres hasta que se encuentra un carácter 
-* de nueva línea, lo que efectivamente ignora el carácter de nueva línea 
-* introducido cuando se presiona Enter.
-*
-* ********* ESTANDAR C++ 98: **********
-* En este código, std::cin >> s; lee la entrada del usuario en la cadena s. 
-* Si s está vacío (es decir, el usuario simplemente presionó Enter sin 
-* introducir ningún carácter), entonces std::cin.ignore(1000, '\n'); ignora 
-* hasta 1000 caracteres o hasta que se encuentra un carácter de nueva línea, 
-* lo que efectivamente evita que se haga un salto de línea.
-*
-* ****  NO WAY!!! *****
+	ASCII > 128 not allowed (to fix the align of the separator pipes)
 */
 std::string ftCaptureString(void){
 	std::string 	s;
-//	unsigned char	c;
+	unsigned char	c;
+	bool			asciiOk = true;
 	
 	while (std::getline(std::cin, s))
 	{
 		if (!s.empty()) {
-	//		for (unsigned long i = 0; i < s.length(); i++) {
-	//			c = static_cast<unsigned char>(s[i]);
-	//			if (c <= 127)
-					break;
+			for (unsigned long i = 0; i < s.length(); i++) {
+				c = static_cast<unsigned char>(s[i]);
+				if (c >= 127) {
+					asciiOk = false;
+					break ;
+				}
 			}
-//		}
+			if (asciiOk == true) {
+				break;
+			}
+		}
+		asciiOk = true;
 	}
 	return (s);
 }
 
 void	ftObtainNewContact(std::string *s1,
-							std::string *s2, 
-							std::string *s3,
-							std::string *s4, 
-							std::string *s5) {
-								
+						std::string *s2, 
+						std::string *s3,
+						std::string *s4, 
+						std::string *s5) {
+	
+	std::cout << " **** WARNING: ascii > 127 are not allowed ****" << std::endl << std::endl;						
 	std::cout << "First Name:      ";
 	*s1 = ftCaptureString();
 	std::cout << "Last Name:       ";
@@ -102,18 +95,20 @@ void	ftObtainNewContact(std::string *s1,
 	*s4 = ftCaptureString();
 	std::cout << "Dark Secret:     ";
 	*s5 = ftCaptureString();
-	
 }
 
 /*
-	Se podría usar la expresión 'std::cin >> option;' // solo lee hasta el primer espacio
-	pero 'std::getline(std::cin, option);' // lee todo lo que se escriba (no solo la primera palabra)
+	'std::cin >> option;' // only reads until first space ('r you sure?)
+	'std::getline(std::cin, option);' // reads all what is written)
+	One 'char *' variable (C) is declared std::string in C++.
+	When a variable is class-type declared, that calls to their constructor:
+		PhoneBook	phBook;
 */
 int	main(void)
 {
-	std::string	option;		// en lugar de tipo 'char *', los strings se declaran así
+	std::string	option;
 	std::string s1, s2, s3, s4, s5;
-	PhoneBook	phBook;	// declarar una variable de tipo clase llama a su constructor
+	PhoneBook	phBook;
 
 	ftWelcome();
 	while (std::getline(std::cin, option))
@@ -126,7 +121,7 @@ int	main(void)
 		}
 		else if (option == "SEARCH" || option == "search") {
 			if (!phBook.getPhoneBookContact()) {
-				std::cout << "   * Which contact do you want to see? [1..8] :  ";
+				std::cout << " ----->  Which contact do you want to see? [1..8] :  ";
 				phBook.getPhoneBookContact(ftCaptureString());
 			}
 		}

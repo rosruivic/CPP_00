@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:17:01 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/23 14:11:57 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:06:39 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ class	PhoneBook {
 		bool getPhoneBookContact(void); // returns 1 if no contacts, 0 otherwise
 		
 		void getPhoneBookContact(std::string id);
-
-		unsigned long asciiExtended(std::string str);
 
 		void printTruncated(std::string str);
 		
