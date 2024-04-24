@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:22:24 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/24 15:24:56 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:34:51 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ void	ftClearScreen () {
 void	ftWelcome(void)
 {
 	ftClearScreen();
-    std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl << std::endl;
-	std::cout << std::setw(40) << std::setfill('-') << "  This is your Awesome PhoneBook !!!" << std::endl << std::endl;
+    std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl;
+	std::cout << std::setw(40) << std::setfill('-') << "  This is your Awesome PhoneBook !!!" << std::endl;
     std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl << std::endl;
 	std::cout << std::endl << " Please, write your option :" << std::endl;
     std::cout << std::setw(40) << std::setfill('-') << "-" << std::endl;
-	std::cout << "   ADD    -> to add a new contact to your Phone Book." << std::endl;
-	std::cout << "   SEARCH -> to search and display an existent contact on your Phone Book." << std::endl;
-	std::cout << "   EXIT   -> to finish your session and exit the program." << std::endl;
+	std::cout << "   ADD    -> add a new contact to your Phone Book." << std::endl;
+	std::cout << "   SEARCH -> search and display an existent contact on your Phone Book." << std::endl;
+	std::cout << "   EXIT   -> finish your session and exit the program." << std::endl;
 	std::cout << std::endl << std::endl;
-	std::cout << "Your selection: ";
+	std::cout << " -----> Your selection: ";
 }
 
 /*
@@ -120,9 +120,14 @@ int	main(void)
 			phBook.setPhoneBookContact(s1, s2, s3, s4, s5);
 		}
 		else if (option == "SEARCH" || option == "search") {
-			if (!phBook.getPhoneBookContact()) {
+			if (phBook.getPhoneBookContact()) {
 				std::cout << " ----->  Which contact do you want to see? [1..8] :  ";
 				phBook.getPhoneBookContact(ftCaptureString());
+			}
+			else {
+				std::cout << "  **** WARNING:   There's not any contact yet !!!" << std::endl;
+				std::cout << std::endl << " -------> Please, push ENTER to continue... " ;
+				std::cin.get();
 			}
 		}
 		ftWelcome();

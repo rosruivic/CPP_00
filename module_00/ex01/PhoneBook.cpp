@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:24:18 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/24 15:34:04 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:40:17 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,13 @@ void PhoneBook::printTruncated(std::string str) {
 /*
  * prints all contacts into columns
 */
-bool PhoneBook::getPhoneBookContact(void){
+bool PhoneBook::getPhoneBookContact(void) {
 	if (this->_contacts[0].getFirstName().empty()) {
-		std::cout << "  **** WARNING:   There's any contact yet !!!" << std::endl;
-		std::cout << std::endl << " -------> Please, push ENTER to continue... " ;
-		std::cin.get();
-		return (1);
+		return (0);
 	}
 	else {
+		std::cout << std::endl << " CONTACTS STORED:" << std::endl;
+		std::cout << " ---------------------------------------" << std::endl;		
 		for (int contactId = 0; contactId < 8; ++contactId) {
 			if (!this->_contacts[contactId].getFirstName().empty()) {
 				std::cout << contactId + 1 << " | ";
@@ -71,8 +70,11 @@ bool PhoneBook::getPhoneBookContact(void){
 				PhoneBook::printTruncated(this->_contacts[contactId].getNickName());
 				std::cout << std::endl;
 			}
+			else
+				break ;
+		std::cout << std::endl;
 		}
-		return (0);
+		return (1);
 	}
 }
 
