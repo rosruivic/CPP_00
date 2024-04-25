@@ -6,14 +6,13 @@
 /*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:24:44 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/22 00:15:23 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:26:09 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact()
-{}
+Contact::Contact() {}
 
 /*	CONSTRUCTOR: only used one time, to init the values at the creation of 
 	the object (instance) */
@@ -35,9 +34,7 @@ Contact::Contact(std::string firstNm,
 
 /*	DESTRUCTOR: not necessary at this exercise because is forbidden to use
 	dinamyc memorie ('new')  */
-Contact::~Contact(void) {
-	
-}
+Contact::~Contact(void) {}
 
 /* SETTERS */
 void Contact::setFirstName(std::string firstNm) {
@@ -60,7 +57,7 @@ void Contact::setDarkestSecret(std::string darkScrt) {
 	this->_darkestSecret = darkScrt;
 }
 
-/*  GETTERS: to access to the values of an instance of the class */
+/*  GETTERS  */
 std::string Contact::getFirstName() {
 	return (this->_firstName);
 }

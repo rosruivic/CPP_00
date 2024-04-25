@@ -6,18 +6,16 @@
 /*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:24:18 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/25 00:40:17 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:06:27 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 /*
-	Este constructor no toma ningún argumento; en su lugar, inicializa
-	cada elemento del array 'contacts' con un objeto 'Contact' vacío.
-	Como el constructor de la clase Contact inicializa los miembros de
-	datos de Contact a valores razonables, este código inicializa cada
-	elemento de 'contacts' a esos valores
+	This constructor inits each element of the 'Contacts' array
+		with an empty 'Contact' object.
+	The constructor inits their members of Contact to reasonable values.
 */
 PhoneBook::PhoneBook(void) {}
 

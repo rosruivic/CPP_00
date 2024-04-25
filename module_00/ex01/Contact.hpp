@@ -6,7 +6,7 @@
 /*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:53:51 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/21 23:46:03 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:17:01 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 	NAMES CONVENTION:
 	1. Variables members of a class: camelCase
 	2. Parameters: camelCase (but other word to avoid confuse)
+
+	An explicit destructor is needed when dinamic memory is used
+	(here that's not the case)
 */
 
 class	Contact {
@@ -39,24 +42,21 @@ class	Contact {
 				std::string phoneNum,
 				std::string darkScrt);
 				
-		~Contact(void); // innecesario al no tener mem dinámica
+		~Contact(void);
 
-		// methods setters to add one instance of the class
+		// setters methods:
 		void setFirstName(std::string firstNm);
 		void setLastName(std::string lastNm);
 		void setNickName(std::string nickNm);
 		void setPhoneNum(std::string phoneNum);
 		void setDarkestSecret(std::string darkScrt);
 		
-		// methods getters to read the content of one instance
+		// getters methods:
 		std::string getFirstName();
 		std::string getLastName();
 		std::string getNickName();
 		std::string getPhoneNum();
 		std::string getDarkestSecret();
-		
-
-		// method to show by screen the content of the properties of the class instance
 
 };
 

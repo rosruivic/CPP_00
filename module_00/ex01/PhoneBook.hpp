@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roruiz-v <roruiz-v@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: roruiz-v <roruiz-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:17:01 by roruiz-v          #+#    #+#             */
-/*   Updated: 2024/04/24 15:06:39 by roruiz-v         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:19:39 by roruiz-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 # include <iostream>
-# include <cstdlib> // cstdlib es parte de la biblioteca estándar de C++ y está disponible en C++98. Esta biblioteca proporciona las funciones de la biblioteca estándar de C para la conversión de números, generación de números aleatorios, gestión de la memoria, búsqueda y ordenación. La función std::atoi que estás utilizando es parte de esta biblioteca.
+# include <cstdlib>
+/* cstdlib is part of the C++ standard library; it's available for C++98.
+ * It gets the standard C functions for numbers convertions, random numbers management,
+ * memory management, seeking and ordenation.
+ * ---> The function 'std::atoi' belongs to this library.
+*/
 # include <iomanip>
 /* <iomanip> IO Manipulators:
 	setiosflags		Set format flags (function)
@@ -28,7 +33,7 @@
 	put_time		Put date and time (function)
 */
 
-// string class -> strings are objects that represent sequences of chars
+// string class -> strings are objects (with methods) that represent sequences of chars
 # include <string>
 
 // the class Contact must be included here to be used into PhoneBook
@@ -55,7 +60,7 @@ class	PhoneBook {
 								std::string phoneNum,
 								std::string darkScrt);
 								
-		bool getPhoneBookContact(void); // returns 1 if no contacts, 0 otherwise
+		bool getPhoneBookContact(void);
 		
 		void getPhoneBookContact(std::string id);
 
